@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="movieList">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie List</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <ul class="menu">
+    <li><a href="#/in_theaters">in_theaters</a></li>
+    <li><a href="#/comming_soon">comming_soon</a></li>
+  </ul>
+
+  <div ng-view>
+
+
+  </div>
+
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <!--<script src="view1/view1.js"></script>-->
+  <!--<script src="view2/view2.js"></script>-->
+  <script src="in_theaters/module.js"></script>
+  <script src="comming_soon/module.js"></script>
+</body>
+</html>
