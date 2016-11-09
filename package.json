@@ -5,7 +5,6 @@
     "prestart": "npm install",
     "start": "./node_modules/.bin/hs -a localhost -p 9000 -o"
   },
-
   "dependencies": {},
   "devDependencies": {
     "http-server": "^0.8.5"

@@ -22,3 +22,15 @@
 
 ## in theater 模块
 js 要包一个自执行函数。 为什么???
+
+
+## 将bootstrap模板 揉进来 这里用的是bower安装
+
+bower install bootstrap --save
+
+直接将bs官网上面的控制台的模板  右键查看源代码 copy下来 以及css的内容copy下来
+
+##  对象数组遍历  用ng-repeat。 
+ 
+<span ng-repeat="c in movie.casts">{{c.name}}{{$last?'':'、'}}
+每个repeat的元素, $scope上都有其他一些属性,  如 $index, $first, $last,$middle, $even, $odd等
