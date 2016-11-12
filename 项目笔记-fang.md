@@ -17,8 +17,7 @@
 
 ## view1 和 2 是模板, 根据模板改相应模块。
 	
-	主页中 引入angular.js 和 angular-route.js文件
-	添加ng-view
+   主页中 引入angular.js 和 angular-route.js文件。 添加ng-view
 
 ## in theater 模块
 js 要包一个自执行函数。 为什么???
@@ -26,11 +25,40 @@ js 要包一个自执行函数。 为什么???
 
 ## 将bootstrap模板 揉进来 这里用的是bower安装
 
-bower install bootstrap --save
+	bower install bootstrap --save
 
 直接将bs官网上面的控制台的模板  右键查看源代码 copy下来 以及css的内容copy下来
+去豆瓣拿假数据, 先将结构撑起来. 
 
-##  对象数组遍历  用ng-repeat。 
+	https://api.douban.com/v2/movie/in_theaters?count=5
+
+## 假数据对象数组, 如何深入遍历 可以用多层嵌套的 ng-repeat。 
  
-<span ng-repeat="c in movie.casts">{{c.name}}{{$last?'':'、'}}
+ 	<span ng-repeat="c in movie.casts">{{c.name}}{{$last?'':'、'}}
+
 每个repeat的元素, $scope上都有其他一些属性,  如 $index, $first, $last,$middle, $even, $odd等
+
+## 将假数据放入data.json文件,  做同域的数据请求。 注入$http服务。
+
+		.controller('in_theatersController', [
+			'$scope',
+			'$http',
+			function ($scope, $http) {
+				$scope.title = "in theater";
+				$http
+					.get('/movieList-fangself/app/data.json')
+					.then((data) => {
+						console.log(data);
+					})
+					.catch((err)=>{
+						console.log(err);
+					});
+				$scope.movies =[];
+
+			}]);
+
+## 跨域问题 
+
+
+
+
