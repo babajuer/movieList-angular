@@ -47,10 +47,13 @@ js 要包一个自执行函数。 为什么???
 				$scope.title = "in theater";
 				$http
 					.get('/movieList-fangself/app/data.json')
-					.then((data) => {
-						console.log(data);
+					.then((response) => {
+						console.log("then:");
+						console.log(response);
+						$scope.movies = response.data;
 					})
 					.catch((err)=>{
+						console.log("catch");
 						console.log(err);
 					});
 				$scope.movies =[];
@@ -58,7 +61,29 @@ js 要包一个自执行函数。 为什么???
 			}]);
 
 ## 跨域问题 
+实质是通过script标签来实现跨域访问。 
+在crossdomain文件夹里单独做跨域的测试。 封装跨域方法。 查看 demo2.html
 
+### http-service.js中
+将crossDomain1.js中的跨域方法 整合到服务模块中。 
+angular中尽量使用angular的对象,  所以要替换掉crossDomain1方法中的window 和document.
 
+	window => $window
+	document => $window.document 
 
+别忘记注入对象。
+	
+	.service('HttpService', ['$window','$document', function ($window,$document) {
 
+### 应用到in_theaters/module.js中
+添加服务模块依赖
+用自定义的HttpService服务, 替换掉之前的$http服务
+
+	angular.module('movieList.in_theaters', ['ngRoute','movieList.service.http'])
+
+		.controller('in_theatersController', [
+			'$scope',
+			'HttpService',
+			function ($scope, HttpService) {
+
+index.html 中不要忘记添加
