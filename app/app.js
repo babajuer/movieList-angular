@@ -8,7 +8,8 @@
 	angular.module('movieList', [
 		'ngRoute',
 		'movieList.in_theaters',
-		'movieList.comming_soon',
+		'movieList.coming_soon',
+		'movieList.directives.auto-active',
 
 	])
 

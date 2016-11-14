@@ -54,7 +54,7 @@
 					},
 					function (data) {
 						//console.log('跨域jsonpFang');
-						console.log(data);
+						//console.log(data);
 						//console.log(data.subjects);
 						$scope.title = data.title;
 						$scope.movies = data.subjects;
