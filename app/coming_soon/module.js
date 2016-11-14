@@ -6,8 +6,8 @@
 	angular.module('movieList.comming_soon', ['ngRoute'])
 
 		.config(['$routeProvider', function($routeProvider) {
-			$routeProvider.when('/comming_soon', {
-				templateUrl: 'comming_soon/view.html',
+			$routeProvider.when('/coming_soon', {
+				templateUrl: 'coming_soon/view.html',
 				controller: 'comming_soonController'
 			});
 		}])
