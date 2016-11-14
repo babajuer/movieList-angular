@@ -87,3 +87,21 @@ angular中尽量使用angular的对象,  所以要替换掉crossDomain1方法中
 			function ($scope, HttpService) {
 
 index.html 中不要忘记添加
+
+
+### 加载中动画   css loading   http://tobiasahlin.com/spinkit/
+
+### 分页
+
+配置路由的时候 加上page占位符  /in_theaters/:page?
+:代表占位符
+?代表可选参数
+		
+		angular.module('movieList.in_theaters', ['ngRoute', 'movieList.service.http'])    
+    		.config(['$routeProvider', function ($routeProvider) {
+    			$routeProvider.when('/in_theaters/:page?', {
+
+
+注入$routeParams 来使用
+
+		$scope.page = parseInt($routeParams.page || 1); //page是可选参数,  如果没有传参 默认就是1;
