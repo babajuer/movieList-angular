@@ -105,3 +105,13 @@ index.html 中不要忘记添加
 注入$routeParams 来使用
 
 		$scope.page = parseInt($routeParams.page || 1); //page是可选参数,  如果没有传参 默认就是1;
+
+### 将分页跳转 抽取到方法中。
+注入$route    使用 updateParams 方法 更新地址参数
+
+	$scope.go = function (page) {
+        if (page > 0 && page <= $scope.totalPage) {
+            $route.updateParams({page: page});
+        }
+
+    }

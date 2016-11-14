@@ -15,17 +15,18 @@
 
 		.controller('in_theatersController', [
 			'$scope',
+			'$route',
 			'$routeParams',
 			'HttpService',
-			function ($scope, $routeParams, HttpService) {
+			function ($scope, $route, $routeParams, HttpService) {
 				$scope.title = "";
 				$scope.movies = [];
 				$scope.loading = true;
 
 				//console.log($routeParams);
 				$scope.page = parseInt($routeParams.page || 1); //page是可选参数,  如果没有传参 默认就是1;
-				var start = ($scope.page - 1) * 5;
 				var numPerPage = 5;
+				var start = ($scope.page - 1) * numPerPage;
 
 				/*//同域请求实例
 				 $http
@@ -53,7 +54,7 @@
 					},
 					function (data) {
 						//console.log('跨域jsonpFang');
-						//console.log(data);
+						console.log(data);
 						//console.log(data.subjects);
 						$scope.title = data.title;
 						$scope.movies = data.subjects;
@@ -66,7 +67,14 @@
 				)
 
 
+				//分页跳转 抽取到方法中。
+				$scope.go = function (page) {
+					if (page > 0 && page <= $scope.totalPage) {
+						$route.updateParams({page: page});
+					}
+
+				}
 			}]);
 
 
-})(angular)
+})(angular);

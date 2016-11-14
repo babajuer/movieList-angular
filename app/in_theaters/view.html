@@ -33,8 +33,11 @@
 	<p >总共: {{totalCount}}条记录, 第{{page}}/{{totalPage}}页</p>
 	<nav >
 		<ul class="pager">
-			<li ng-class="{disabled:page<=1}"><a href="#/in_theaters/{{page-1}}" >Previous</a></li>
-			<li ng-class="{disabled:page>=totalPage}"><a href="#/in_theaters/{{page+1}}" >Next</a></li>
+			<!--<li ng-class="{disabled:page<=1}"><a href="#/in_theaters/{{page-1}}" >Previous</a></li>-->
+			<!--<li ng-class="{disabled:page>=totalPage}"><a href="#/in_theaters/{{page+1}}" >Next</a></li>-->
+
+			<li ng-class="{disabled:page<=1}"><a ng-click="go(page-1)" >Previous</a></li>
+			<li ng-class="{disabled:page>=totalPage}"><a ng-click="go(page+1)" >Next</a></li>
 		</ul>
 	</nav>
 
