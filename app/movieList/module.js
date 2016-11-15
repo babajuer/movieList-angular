@@ -20,7 +20,7 @@
 			'$routeParams',
 			'HttpService',
 			function ($scope, $route, $routeParams, HttpService) {
-				$scope.title = "";
+				$scope.title = "loading";
 				$scope.movies = [];
 				$scope.loading = true;
 
@@ -56,7 +56,7 @@
 					},
 					function (data) {
 						//console.log('跨域jsonpFang');
-						//console.log(data);
+						console.log(data);
 						//console.log(data.subjects);
 						$scope.title = data.title;
 						$scope.movies = data.subjects;

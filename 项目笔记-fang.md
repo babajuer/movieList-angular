@@ -145,3 +145,16 @@ index.html 中不要忘记添加
 		}
 	}])
 	
+### 详细页.  注意路由相互覆盖!!!
+
+movieList 模块中的路由
+
+    $routeProvider.when('/:category/:page?', {
+
+movieDetail 模块中的路由
+
+	$routeProvider.when('/subject/:movieId', {
+	
+
+detail也可以被匹配到List中的路由中去
+所以在入口模块注入的时候 要注意加载顺序。

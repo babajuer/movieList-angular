@@ -9,6 +9,7 @@
 		'ngRoute',
 		//'movieList.in_theaters',
 		//'movieList.coming_soon',
+		'movieList.movieDetail', //注意模块加载顺序  会影响路由相互覆盖。
 		'movieList.movieList',
 		'movieList.directives.auto-active',
 
