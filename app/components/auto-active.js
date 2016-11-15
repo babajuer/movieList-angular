@@ -14,27 +14,29 @@
 				link: function(scope,element,attributes){
 					var url = $location.url();  //  得到类似 /in_theaters/2 的字符串
 					var aLink = element.children().attr('href').substr(1);
-					console.log(aLink);
-					console.log("---:"+url);
+					var className = attributes.autoActive;
+
+					//console.log(aLink);
+					//console.log("---:"+url);
 
 					//判断url 是哪个href开头的。 就将其添加为active.
 					//用字符串的 String.prototype.startsWith() 方法。ES6 规范, 可以使用MDN上的polyfill 解决兼容性问题
-					console.log(url.startsWith(aLink));
+					//console.log(url.startsWith(aLink));
 
 
 					scope.$loc = $location;
 					scope.$watch('$loc.url()', function(now,old){
 
 						if (now.startsWith(aLink)){
-							console.log(attributes); //可以通过attributes.autoActive获取属性值
+							//console.log(attributes); //可以通过attributes.autoActive获取属性值
 
 							//干掉兄弟节点的active
 							//element.parent().children().removeClass('active');
-							element.parent().children().removeClass(attributes.autoActive);
+							element.parent().children().removeClass(className);
 
 							//添加当前元素
 							//element.addClass('active');
-							element.addClass(attributes.autoActive);
+							element.addClass(className);
 
 						}
 					})

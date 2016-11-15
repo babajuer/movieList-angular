@@ -40,25 +40,25 @@ js 要包一个自执行函数。 为什么???
 
 ## 将假数据放入data.json文件,  做同域的数据请求。 注入$http服务。
 
-		.controller('in_theatersController', [
-			'$scope',
-			'$http',
-			function ($scope, $http) {
-				$scope.title = "in theater";
-				$http
-					.get('/movieList-fangself/app/data.json')
-					.then((response) => {
-						console.log("then:");
-						console.log(response);
-						$scope.movies = response.data;
-					})
-					.catch((err)=>{
-						console.log("catch");
-						console.log(err);
-					});
-				$scope.movies =[];
+	.controller('in_theatersController', [
+		'$scope',
+		'$http',
+		function ($scope, $http) {
+			$scope.title = "in theater";
+			$http
+				.get('/movieList-fangself/app/data.json')
+				.then((response) => {
+					console.log("then:");
+					console.log(response);
+					$scope.movies = response.data;
+				})
+				.catch((err)=>{
+					console.log("catch");
+					console.log(err);
+				});
+			$scope.movies =[];
 
-			}]);
+		}]);
 
 ## 跨域问题 
 实质是通过script标签来实现跨域访问。 
@@ -97,9 +97,9 @@ index.html 中不要忘记添加
 :代表占位符
 ?代表可选参数
 		
-		angular.module('movieList.in_theaters', ['ngRoute', 'movieList.service.http'])    
-    		.config(['$routeProvider', function ($routeProvider) {
-    			$routeProvider.when('/in_theaters/:page?', {
+	angular.module('movieList.in_theaters', ['ngRoute', 'movieList.service.http'])    
+        .config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/in_theaters/:page?', {
 
 
 注入$routeParams 来使用
@@ -120,4 +120,28 @@ index.html 中不要忘记添加
 ### 创建一个指令 使左侧导航栏选中之后 自动添加为active状态
 详见 auto-active.js
 
+  将控制器代码中 重用的代码 抽象成服务
+  将视图代码中  å重用的代码 抽象成指令
+  
+  
+### 合并模块  抽取成通用的movieList模块
+路由的时候 提取参数category
+
+	.config(['$routeProvider', function ($routeProvider) {
+		//将in_theater  coming_soon 等也抽取成参数category。 合并模块
+		$routeProvider.when('/:category/:page?', {
+			templateUrl: 'movieList/view.html',
+			controller: 'movieListController'
+		});
+	}])
+
+### 搜索模块。 
+豆瓣搜索格式:  /v2/movie/search?q=张艺谋
+增加搜索控制器, 主要思路是更新url。  用$route.updateParams 方法
+
+	.controller('SearchController',['$scope','$route', function($scope,$route){
+		$scope.search = function(){
+			$route.updateParams({category: 'search',q:$scope.searchKey});
+		}
+	}])
 	

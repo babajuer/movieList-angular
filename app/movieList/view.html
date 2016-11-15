@@ -1,0 +1,55 @@
+<h1 class="page-header">{{title}}</h1>
+
+<!--<p ng-repeat="movie in movies">{{$index}} : {{movie.title}}</p>-->
+
+<div class="list-group">
+	<a href="#" class="list-group-item" ng-repeat="movie in movies">
+		<div class="media">
+			<div class="media-left">
+				<img class="listImg" ng-src="{{movie.images.medium}}" alt="哈哈哈哈">
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">
+					{{movie.title}} <span class="badge">{{movie.rating.average}}</span>
+				</h4>
+
+				<p>类型: {{movie.genres.join("、")}}</p>
+				<p>导演:
+					<span ng-repeat="d in movie.directors">{{d.name}}{{$last?'':'、'}}</span>
+				</p>
+				<p>主演:
+					<span ng-repeat="c in movie.casts">{{c.name}}{{$last?'':'、'}}
+
+					</span>
+				</p>
+			</div>
+		</div>
+	</a>
+
+</div>
+
+<div ng-show="!loading">
+
+	<p >总共: {{totalCount}}条记录, 第{{page}}/{{totalPage}}页</p>
+	<nav >
+		<ul class="pager">
+			<!--<li ng-class="{disabled:page<=1}"><a href="#/in_theaters/{{page-1}}" >Previous</a></li>-->
+			<!--<li ng-class="{disabled:page>=totalPage}"><a href="#/in_theaters/{{page+1}}" >Next</a></li>-->
+
+			<li ng-class="{disabled:page<=1}"><a ng-click="go(page-1)" >Previous</a></li>
+			<li ng-class="{disabled:page>=totalPage}"><a ng-click="go(page+1)" >Next</a></li>
+		</ul>
+	</nav>
+
+</div>
+
+
+<div class="loading" ng-show="loading">
+	<div class="spinner ">
+		<div class="rect1"></div>
+		<div class="rect2"></div>
+		<div class="rect3"></div>
+		<div class="rect4"></div>
+		<div class="rect5"></div>
+	</div>
+</div>
